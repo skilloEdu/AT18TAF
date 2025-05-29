@@ -1,21 +1,31 @@
 package org.nnn.POM;
 
-import org.openqa.selenium.By;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class LoginPage extends BasePage {
-
     public static final String LOGIN_PAGE_SUFIX = "/users/login";
 
-    //UI MAP
-    public static final String username_id = "defaultLoginFormUsername";
-    public static final String password_id = "defaultLoginFormPassword";
-    public static final String login_form_submit_btn_id = "sign-in-button";
+    @FindBy(css = "p.h4")
+    private WebElement loginFormTitle;
 
-    public LoginPage (WebDriver driver){
-        super(driver);
+    @FindBy(id = "defaultLoginFormUsername")
+    private WebElement usernameInputField;
+
+    @FindBy(id = "defaultLoginFormPassword")
+    private WebElement passwordInputField;
+
+    @FindBy(id = "sign-in-button")
+    private WebElement loginSubmitButton;
+
+
+    public LoginPage(WebDriver driver, Logger log) {
+        super(driver, log);
+        PageFactory.initElements(driver,this);
     }
 
     public void navigateToLoginPage(){
@@ -23,26 +33,31 @@ public class LoginPage extends BasePage {
     }
 
     public void provideUser(String userNameText){
-        WebElement userName = driver.findElement(By.id(username_id));
-        wait.until(ExpectedConditions.visibilityOf(userName));
+        wait.until(ExpectedConditions.visibilityOf(usernameInputField));
         //clear
-        userName.clear();
+        usernameInputField.clear();
         //send
-        userName.sendKeys(userNameText);
+        usernameInputField.sendKeys(userNameText);
     }
 
     public void providePass(String pass){
-        WebElement passWord = driver.findElement(By.id(password_id));
-        wait.until(ExpectedConditions.visibilityOf(passWord));
+        wait.until(ExpectedConditions.visibilityOf(passwordInputField));
         //clear
-        passWord.clear();
+        passwordInputField.clear();
         //send
-        passWord.sendKeys(pass);
+        passwordInputField.sendKeys(pass);
     }
 
     public void clickOnLoginFormSubmitButton(){
-        WebElement loginBtn = driver.findElement(By.id(login_form_submit_btn_id));
-        wait.until(ExpectedConditions.visibilityOf(loginBtn));
-        loginBtn.click();
+        wait.until(ExpectedConditions.visibilityOf(loginSubmitButton));
+        loginSubmitButton.click();
+    }
+
+    public boolean isLoginFormHeaderTextShown(){
+        return isElementPresented(loginFormTitle);
+    }
+
+    public String getLoginFormHeaderText(){
+        return getElementText(loginFormTitle);
     }
 }

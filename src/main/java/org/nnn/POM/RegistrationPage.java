@@ -1,5 +1,6 @@
 package org.nnn.POM;
 
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -37,9 +38,8 @@ public class RegistrationPage extends BasePage {
     @FindBy (id = "sign-in-button" )
     private WebElement registrationFormSubmitButton;
 
-
-    public RegistrationPage (WebDriver driver){
-        super(driver);
+    public RegistrationPage(WebDriver driver, Logger log) {
+        super(driver, log);
         PageFactory.initElements(driver,this);
     }
 
@@ -52,27 +52,27 @@ public class RegistrationPage extends BasePage {
     //Populate data in input fields
     public void provideUserName(){
         String providedDemoUser = demoUsername();
-        fillField(regUsernameInputField,providedDemoUser);
+        typeTextIn(regUsernameInputField,providedDemoUser);
     };
 
     public void provideEmail(){
-        fillField(regEmailInputField,randomValidEmail());
+        typeTextIn(regEmailInputField,randomValidEmail());
     };
 
     public void provideBDayInfo(){
-        fillField(regBirthDateInputField,"22022022");
+        typeTextIn(regBirthDateInputField,"22022022");
     };
 
     public void providePass(){
-        fillField(regPasswordInputField,"22022022!A");
+        typeTextIn(regPasswordInputField,"22022022!A");
     };
 
     public void providePassConfirm(){
-        fillField(regConfirmPasswordInputField,"22022022!A");
+        typeTextIn(regConfirmPasswordInputField,"22022022!A");
     };
 
     public void providePublicInfo(){
-        fillField(publicInfoTextArea,"Public profile");
+        typeTextIn(publicInfoTextArea,"Public profile");
     };
 
     public void clickOnSubmitBtn(){
