@@ -29,8 +29,6 @@ public abstract class BasePage {
         log.info("# CONFIRM: The user has naivated to "+ urlToBeLoaded);
     }
 
-    //USER ACTIONS
-
     public void clickOn(WebElement element) {
         wait.until(ExpectedConditions.visibilityOf(element));
         wait.until(ExpectedConditions.elementToBeClickable(element));
@@ -104,7 +102,6 @@ public abstract class BasePage {
         return isElementClickable;
     }
 
-    //Logging support methods
     private String locatorInfo(WebElement elm ){
         String[] rawWebElmInfo = elm.toString().split("->");
         String[] webElmInfo = rawWebElmInfo[1].split(":");
