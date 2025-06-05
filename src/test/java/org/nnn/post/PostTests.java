@@ -76,13 +76,12 @@ public class PostTests extends BaseTest {
 
     @Test(priority = 4)
     public void verifyUserCanDeletePost() {
+
         HomePage homePage = new HomePage(super.driver, log);
+        homePage.openHomePage();
+        homePage.clickOnLoginNavBar();
+
         LoginPage loginPage = new LoginPage(super.driver, log);
-
-        log.info("The user has navigated to the Login page.");
-        loginPage.navigateToLoginPage();
-
-        log.info("The user has logged in with username and password.");
         loginPage.loginWithTestUser();
 
         log.info("The user has navigated to the Profile page.");

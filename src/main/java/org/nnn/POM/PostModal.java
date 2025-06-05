@@ -14,13 +14,14 @@ public class PostModal extends BasePage {
         this.modalElement = driver.findElement(By.className("post-modal"));
     }
     public boolean isImageVisible() {
+        boolean isPostPicShown = false;
         try {
             WebElement image = modalElement.findElement(By.cssSelector(".post-modal-img img"));
-            return wait.until(ExpectedConditions.visibilityOf(image)).isDisplayed();
+            isPostPicShown = wait.until(ExpectedConditions.visibilityOf(image)).isDisplayed();
         } catch (NoSuchElementException e) {
             e.printStackTrace();
-            return false;
         }
+        return  isPostPicShown;
     }
     public String getPostUser() {
         WebElement postUser = modalElement.findElement(By.className("post-user"));

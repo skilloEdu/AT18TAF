@@ -9,11 +9,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class LoginPage extends BasePage {
     private static final String LOGIN_PAGE_SUFIX = "/users/login";
-    // public static final String USER = "userValid";
-    // public static final String PASS = "123456V";
+
     private static final String USER = "testingDemos";
     private static final String PASS = "testing";
-
 
     @FindBy(css = "p.h4")
     private WebElement loginFormTitle;
