@@ -4,7 +4,6 @@ import org.nnn.POM.*;
 import org.nnn.base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import java.io.File;
 
 public class PostTests extends BaseTest {
@@ -68,7 +67,7 @@ public class PostTests extends BaseTest {
 
     }
 
-    @Test
+    @Test (priority = 3)
     public void verifyUserCanDislikePost() {
         ProfilePage profilePage = new ProfilePage(super.driver, log);
         profilePage.navigateTo("posts/all");
@@ -76,7 +75,6 @@ public class PostTests extends BaseTest {
 
     @Test(priority = 4)
     public void verifyUserCanDeletePost() {
-
         HomePage homePage = new HomePage(super.driver, log);
         homePage.openHomePage();
         homePage.clickOnLoginNavBar();
